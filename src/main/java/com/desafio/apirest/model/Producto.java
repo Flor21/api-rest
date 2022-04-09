@@ -4,12 +4,17 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Producto {
+public class Producto implements java.io.Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
-    private Integer id;
+    @GeneratedValue
+    private Long id;
 
     @Column(name = "nombre")
     private String nombre;
@@ -23,11 +28,11 @@ public class Producto {
     @Column(name = "fechaCreacion")
     private Date fechaCreacion;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -61,6 +66,15 @@ public class Producto {
 
     public void setFechaCreacion(Date fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
+    }
+
+    public Producto() {
+    }
+
+    @Override
+    public String toString() {
+        return "Producto [descripcion=" + descripcion + ", fechaCreacion=" + fechaCreacion + ", id=" + id + ", nombre="
+                + nombre + ", precio=" + precio + "]";
     }
 
 }
