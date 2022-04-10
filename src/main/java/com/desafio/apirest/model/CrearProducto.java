@@ -3,7 +3,8 @@ package com.desafio.apirest.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CrearProducto {
-    @JsonProperty("nombre")
+
+    @JsonProperty("precio")
     private String nombre;
 
     @JsonProperty("descripcion")

@@ -16,13 +16,13 @@ public class Producto implements java.io.Serializable {
     @GeneratedValue
     private Long id;
 
-    @Column(name = "nombre")
+    @Column(name = "nombre", nullable = false)
     private String nombre;
 
     @Column(name = "descripcion")
     private String descripcion;
 
-    @Column(name = "precio")
+    @Column(name = "precio", nullable = false)
     private Double precio;
 
     @Column(name = "fechaCreacion")
