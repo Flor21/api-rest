@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CrearProducto {
 
-    @JsonProperty("precio")
+    @JsonProperty("nombre")
     private String nombre;
 
     @JsonProperty("descripcion")

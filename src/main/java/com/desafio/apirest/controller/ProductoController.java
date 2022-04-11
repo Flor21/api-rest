@@ -4,11 +4,9 @@ import com.desafio.apirest.model.Producto;
 import com.desafio.apirest.model.CrearProducto;
 import com.desafio.apirest.repository.ProductoRepository;
 import com.desafio.apirest.service.ProductoService;
-import com.desafio.apirest.utils.InvalidDataException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.http.HttpStatus;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -34,13 +31,9 @@ public class ProductoController {
     private ProductoService service;
 
     @PostMapping()
-    public ResponseEntity<Object> create(@Valid @RequestBody CrearProducto crearProducto, BindingResult result) {
-        if (result.hasErrors())
-            throw new InvalidDataException(result);
-
+    public ResponseEntity<Object> create(@Valid @RequestBody CrearProducto crearProducto) {
         Producto producto = service.generarProducto(crearProducto);
         return new ResponseEntity<>(producto, HttpStatus.CREATED);
-
     }
 
     @GetMapping()
