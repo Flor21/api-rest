@@ -1,16 +1,11 @@
 package com.desafio.apirest.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class CrearProducto {
 
-    @JsonProperty("nombre")
     private String nombre;
 
-    @JsonProperty("descripcion")
     private String descripcion;
 
-    @JsonProperty("precio")
     private Double precio;
 
     public String getNombre() {

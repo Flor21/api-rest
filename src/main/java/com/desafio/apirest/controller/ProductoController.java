@@ -30,7 +30,7 @@ public class ProductoController {
     @Autowired
     private ProductoService service;
 
-    @PostMapping()
+    @PostMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity<Object> create(@Valid @RequestBody CrearProducto crearProducto) {
         Producto producto = service.generarProducto(crearProducto);
         return new ResponseEntity<>(producto, HttpStatus.CREATED);
