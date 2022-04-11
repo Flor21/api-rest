@@ -6,7 +6,6 @@ services:
     restart: always
     environment:
       MYSQL_DATABASE: 'db_almacen'
-      MYSQL_USER: 'root'
       MYSQL_PASSWORD: 'flor21'
       MYSQL_ROOT_PASSWORD: 'flor21'
     ports:

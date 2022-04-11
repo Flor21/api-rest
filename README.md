@@ -20,12 +20,13 @@
         * Url: http://localhost:8080/productos
 
         * RequestBody
+        ~~~
         {
             "nombre": "Devanador Ovillador De Lana Manual",
             "descripcion": "**** OVILLADOR MANUAL **** Ovillador - Devanador Manual de excelente calidad. Incluye en el precio el Ovillador y el porta madeja. Con este Ovillador conseguirás que tus ovillos sean perfectos.\nIndustria Nacional\n",
             "precio": 9820.99
         }
-
+        ~~~
     - GET 
         * Para obtener todos los productos se utiliza la siguiente url: http://localhost:8080/productos
         
