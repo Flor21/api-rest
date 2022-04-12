@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: 'mysql_almacen'
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db_almacen'
+      MYSQL_PASSWORD: 'flor21'
+      MYSQL_ROOT_PASSWORD: 'flor21'
+    ports:
+     - "3307:3306"
+    volumes:
+     - ./mysql:/var/lib/mysql

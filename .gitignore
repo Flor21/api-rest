@@ -4,3 +4,4 @@ target/
 .vscode/
 mvnw
 mvnw.cmd
+mysql/
