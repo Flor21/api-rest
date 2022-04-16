@@ -7,6 +7,7 @@ import com.desafio.apirest.service.ProductoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,7 +31,7 @@ public class ProductoController {
     @Autowired
     private ProductoService service;
 
-    @PostMapping(consumes = "application/json", produces = "application/json")
+    @PostMapping(path = "/agregar", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Object> create(@Valid @RequestBody CrearProducto crearProducto) {
         Producto producto = service.generarProducto(crearProducto);
         return new ResponseEntity<>(producto, HttpStatus.CREATED);
