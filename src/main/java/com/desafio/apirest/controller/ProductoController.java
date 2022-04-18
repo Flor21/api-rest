@@ -7,6 +7,7 @@ import com.desafio.apirest.service.ProductoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,13 +31,14 @@ public class ProductoController {
     @Autowired
     private ProductoService service;
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity<Object> create(@Valid @RequestBody CrearProducto crearProducto) {
         Producto producto = service.generarProducto(crearProducto);
         return new ResponseEntity<>(producto, HttpStatus.CREATED);
     }
 
-    @GetMapping()
+    @GetMapping
     public ResponseEntity<Object> getAllProductos() {
         List<Producto> productos = repository.findAll();
         return new ResponseEntity<>(productos, HttpStatus.OK);
@@ -47,6 +49,7 @@ public class ProductoController {
         return new ResponseEntity<>(service.findById(idProducto), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{idProducto}")
     public ResponseEntity<Object> deleteProducto(@PathVariable Long idProducto) {
         service.deleteProducto(idProducto);
