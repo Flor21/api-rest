@@ -22,7 +22,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/productos")
+@RequestMapping("/productos")
 public class ProductoController {
 
     @Autowired

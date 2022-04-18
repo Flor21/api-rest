@@ -1,4 +1,4 @@
-package com.desafio.apirest.config;
+package com.desafio.apirest.service;
 
 import java.util.Arrays;
 import java.util.List;
@@ -34,7 +34,7 @@ public class CustomUserDetailsService implements UserDetailsService {
             roles = Arrays.asList(new SimpleGrantedAuthority(user.getRole()));
             return new User(user.getNombre(), user.getContrasenia(), roles);
         }
-        throw new UsernameNotFoundException("No se encuntra el usuario con el nombre: " + username);
+        throw new UsernameNotFoundException("No se encuentra el usuario con el nombre: " + username);
     }
 
     public Usuario save(UsuarioDTO user) {

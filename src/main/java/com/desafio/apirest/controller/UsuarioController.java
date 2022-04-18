@@ -1,9 +1,11 @@
-package com.desafio.apirest.config;
+package com.desafio.apirest.controller;
 
+import com.desafio.apirest.config.JwtUtil;
 import com.desafio.apirest.model.AutenticacionRequest;
 import com.desafio.apirest.model.AutenticacionResponse;
 import com.desafio.apirest.model.Usuario;
 import com.desafio.apirest.model.UsuarioDTO;
+import com.desafio.apirest.service.CustomUserDetailsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/usuario")
+@RequestMapping("/usuario")
 public class UsuarioController {
 
     @Autowired
