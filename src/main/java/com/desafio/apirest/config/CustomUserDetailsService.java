@@ -34,7 +34,7 @@ public class CustomUserDetailsService implements UserDetailsService {
             roles = Arrays.asList(new SimpleGrantedAuthority(user.getRole()));
             return new User(user.getNombre(), user.getContrasenia(), roles);
         }
-        throw new UsernameNotFoundException("User not found with the name " + username);
+        throw new UsernameNotFoundException("No se encuntra el usuario con el nombre: " + username);
     }
 
     public Usuario save(UsuarioDTO user) {

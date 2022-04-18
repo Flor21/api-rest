@@ -22,7 +22,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/productos")
+@RequestMapping("/api/productos")
 public class ProductoController {
 
     @Autowired
@@ -31,13 +31,14 @@ public class ProductoController {
     @Autowired
     private ProductoService service;
 
-    @PostMapping(path = "/agregar", consumes = "application/json", produces = "application/json")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity<Object> create(@Valid @RequestBody CrearProducto crearProducto) {
         Producto producto = service.generarProducto(crearProducto);
         return new ResponseEntity<>(producto, HttpStatus.CREATED);
     }
 
-    @GetMapping()
+    @GetMapping
     public ResponseEntity<Object> getAllProductos() {
         List<Producto> productos = repository.findAll();
         return new ResponseEntity<>(productos, HttpStatus.OK);
@@ -48,6 +49,7 @@ public class ProductoController {
         return new ResponseEntity<>(service.findById(idProducto), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{idProducto}")
     public ResponseEntity<Object> deleteProducto(@PathVariable Long idProducto) {
         service.deleteProducto(idProducto);
