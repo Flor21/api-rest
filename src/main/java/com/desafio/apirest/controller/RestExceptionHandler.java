@@ -6,12 +6,14 @@ import com.desafio.apirest.model.ErrorResponse;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
+
     @ExceptionHandler
     protected ResponseEntity<ErrorResponse> handleException(NoSuchElementException exc) {
         String codigo = "PRODUCTO_NO_EXISTE";
@@ -26,6 +28,14 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         HttpStatus httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
         return buildResponseEntity(codigo, httpStatus,
                 new RuntimeException("Se produjo un error desconocido"));
+    }
+
+    @ExceptionHandler
+    protected ResponseEntity<ErrorResponse> handleException(UsernameNotFoundException exc) {
+        String codigo = "ERROR_USUARIO";
+        HttpStatus httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+        return buildResponseEntity(codigo, httpStatus,
+                new RuntimeException(exc.getMessage()));
     }
 
     private ResponseEntity<ErrorResponse> buildResponseEntity(String codigo, HttpStatus httpStatus, Exception exc) {

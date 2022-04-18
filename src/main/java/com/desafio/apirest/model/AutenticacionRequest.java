@@ -2,12 +2,12 @@ package com.desafio.apirest.model;
 
 public class AutenticacionRequest {
 
-    private String nombre;
+    private String email;
     private String contrasenia;
 
-    public AutenticacionRequest(String nombre, String contrasenia) {
+    public AutenticacionRequest(String email, String contrasenia) {
         super();
-        this.nombre = nombre;
+        this.email = email;
         this.contrasenia = contrasenia;
     }
 
@@ -15,12 +15,12 @@ public class AutenticacionRequest {
 
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getEmail() {
+        return email;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getContrasenia() {
