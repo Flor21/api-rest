@@ -25,7 +25,6 @@ public class Usuario {
     private String role;
 
     @Column(name = "email", nullable = false)
-    @NotEmpty(message = "El Email no puede ser vacio")
     @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}")
     private String email;
 
