@@ -1,24 +1,8 @@
 version: "3.7"
 services:
-  backend:
-    image: 'api-rest:latest'
-    build: ./api-rest
-    container_name: 'backend'
-    depends_on:
-     - db
-    environment:
-     - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/db_almacen?autoReconnect=true&useSSL=false
-     - SPRING_DATASOURCE_USERNAME=root
-     - SPRING_DATASOURCE_PASSWORD=flor21
-     - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-     - SPRING_DATASOURCE_DRIVERCLASSNAME=com.mysql.cj.jdbc.Driver
-     - JWT_SECRET=javaflor
-     - JWT_EXPIRATIONDATEINMS=18000000
-    ports:
-     - "8080:8080"
-
   db:
     image: mysql:5.7
+    restart: unless-stopped
     container_name: 'mysql'
     environment:
       MYSQL_DATABASE: 'db_almacen'
@@ -28,3 +12,21 @@ services:
      - "3307:3306"
     volumes:
      - ./mysql:/var/lib/mysql
+
+  backend:
+    image: 'api-rest:latest'
+    build: .
+    container_name: 'backend'
+    depends_on:
+     - db
+    environment:
+     - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/db_almacen?useSSL=false
+     - SPRING_DATASOURCE_USERNAME=root
+     - SPRING_DATASOURCE_PASSWORD=flor21
+     - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+     - JWT_SECRET=javaflor
+     - JWT_EXPIRATIONDATEINMS=18000000
+    ports:
+     - "8080:8080"
+    stdin_open: true
+    tty: true
