@@ -2,8 +2,7 @@ version: "3.7"
 services:
   backend:
     image: 'api-rest:latest'
-    build:
-      context: .
+    build: ./api-rest
     container_name: 'backend'
     depends_on:
      - db
