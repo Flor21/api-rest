@@ -22,6 +22,7 @@
         ~~~
         {
             "nombre": "cualquierNombre",
+            "email": "email@gmail.com",
             "contrasenia": "cualquierContrasenia",
             "role": "ROLE_ADMIN"
         }
@@ -33,13 +34,16 @@
         * RequestBody
         ~~~
         {
-            "nombre": "cualquierNombre",
+            "email": "email@gmail.com",
             "contrasenia": "cualquierContrasenia",
         }
         ~~~
 
     Estas peticiones se hacen copiando el token que te devolvio cuando te auntenticaste.
-    - POST 
+
+    - POST
+        Solo puede realizarlo el Admin
+        
         * Url: http://localhost:8080/productos
 
         * RequestBody
@@ -52,9 +56,13 @@
         ~~~
         
     - GET 
+        Pueden realizarlo el Admin y el User.
+
         * Para obtener todos los productos se utiliza la siguiente url: http://localhost:8080/productos
         
         * Para obtener un producto especifico se utiliza la siguiente url y reemplazo {idProducto} por el numero de id que quiero buscar http://localhost:8080/productos/{idProducto}
 
-    - DELETE
+    - DELETE 
+        Solo puede realizarlo el Admin.
+
         * Para eliminar un producto especifico se utiliza la siguiente url y reemplazo {idProducto} por el numero de id que quiero eliminar http://localhost:8080/productos/{idProducto}
