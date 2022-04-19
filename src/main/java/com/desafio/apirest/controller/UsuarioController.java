@@ -38,21 +38,21 @@ public class UsuarioController {
             throws Exception {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                    authenticationRequest.getNombre(), authenticationRequest.getContrasenia()));
+                    authenticationRequest.getEmail(), authenticationRequest.getContrasenia()));
         } catch (DisabledException e) {
             throw new Exception("USUARIO_DESABILITADO", e);
         } catch (BadCredentialsException e) {
             throw new Exception("CREDENCIALES_INVALIDA", e);
         }
 
-        UserDetails userdetails = userDetailsService.loadUserByUsername(authenticationRequest.getNombre());
+        UserDetails userdetails = userDetailsService.loadUserByUsername(authenticationRequest.getEmail());
         String token = jwtUtil.generateToken(userdetails);
         return ResponseEntity.ok(new AutenticacionResponse(token));
     }
 
     @PostMapping(path = "/registrarse")
-    public ResponseEntity<Usuario> saveUser(@RequestBody UsuarioDTO user) throws Exception {
-        return ResponseEntity.ok(userDetailsService.save(user));
+    public ResponseEntity<Usuario> saveUser(@RequestBody UsuarioDTO usuario) throws Exception {
+        return ResponseEntity.ok(userDetailsService.save(usuario));
     }
 
 }

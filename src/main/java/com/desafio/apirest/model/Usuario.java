@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Usuario {
@@ -13,14 +15,18 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsuario;
 
-    @Column(name = "nombre")
+    @Column(name = "nombre", nullable = false)
     private String nombre;
 
-    @Column(name = "contasenia")
+    @Column(name = "contasenia", nullable = false)
     private String contrasenia;
 
-    @Column(name = "role")
+    @Column(name = "role", nullable = false)
     private String role;
+
+    @Column(name = "email", nullable = false)
+    @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}")
+    private String email;
 
     public Long getIdUsuario() {
         return idUsuario;
@@ -54,10 +60,19 @@ public class Usuario {
         this.role = role;
     }
 
-    public Usuario(String nombre, String contrasenia, String role) {
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Usuario(String nombre, String contrasenia, String role, String email) {
         this.nombre = nombre;
         this.contrasenia = contrasenia;
         this.role = role;
+        this.email = email;
     }
 
     public Usuario() {
@@ -65,8 +80,8 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario [contrasenia=" + contrasenia + ", idUsuario=" + idUsuario + ", nombre=" + nombre + ", role="
-                + role + "]";
+        return "Usuario [contrasenia=" + contrasenia + ", email=" + email + ", idUsuario=" + idUsuario + ", nombre="
+                + nombre + ", role=" + role + "]";
     }
 
 }
