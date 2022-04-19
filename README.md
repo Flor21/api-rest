@@ -10,7 +10,10 @@
 1. Clono el repositorio `$ git clone https://github.com/Flor21/api-rest.git`
 
 2. Luego me posiciono dentro del directorio: `$ cd api-rest`
+    - `docker build -t api-rest .`
     - `$ docker-compose up`
+
+Aclaracion: si la app no arranca volver a correr el comando `$ docker-compose up`. Esto sucede porque el container no se llega a terminar de levantar a tiempo.
 
 3. Una vez levantado el proyecto podemos realizar las siguientes peticiones POST, GET y DELETE, pero primero hay que registrarse y despues autenticarse.
     Los roles pueden ser  ROLE_ADMIN o ROLE_USER.
